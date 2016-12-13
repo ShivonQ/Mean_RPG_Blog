@@ -18,71 +18,73 @@ let mainController = {
             res.json(blogposts);
         });
     },
-    //  updateBlogPost:(req,res) => {
-//  BlogPost.update({
-//     title:req.body.title,
-//     text: req.body.text,
-//     date_updated:Date.now()
-//   }, (err, blogpost) => {
-// if(err) {
-//    return res.send(err);
-// }
-// BlogPost.find({}, (err, blogposts) => {
-//    if(err) {
-//    return res.send(err);
-//    }
-//    res.json(blogposts);
-//    });
-//    });
-// },
-  postNewBlogPost: (req, res) => {
-    // This creates a new blogpost using POSTed data (in req.body)
-    BlogPost.create({
-      title:req.body.title,
-      text: req.body.text,
-      date_added: Date.now(),
-      date_updated:Date.now()
-    }, (err, blogpost) => {
-      if (err) {
-        return res.send(err);
-      }
-      BlogPost.find({}, (err, blogposts) => {
-        if (err) {
-          return res.send(err);
-        }
-        // Send list of all blogposts after new one has been created and saved
-        res.json(blogposts);
-      });
-    });
-  },
-  deleteBlogPost: (req, res) => {
-    BlogPost.remove({
-      _id: req.params.id
-    }, (err, blogpost) => {
-      if (err) {
-        return res.send(err);
-      }
-      BlogPost.find({}, (err, blogposts) => {
-        if (err) {
-          return res.send(err);
-        }
-        res.json(blogposts);
-      });
-    });
-  },
-  deleteAllBlogPosts: (req, res) => {
-    BlogPost.remove({}, (err, blogpost) => {
-      if (err) {
-        return res.send(err);
-      }
-      BlogPost.find({}, (err, blogposts) => {
-        if (err) {
-          return res.send(err);
-        }
-        res.json(blogposts);
-      });
-    });
-  }
+    updateBlogPost: (req, res) => {
+        BlogPost.update({_id: req.params.id}, {
+            $set: {
+                title: req.body.title,
+                text: req.body.text,
+                date_updated: Date.now()
+            }
+        }, (err, blogpost) => {
+            if (err) {
+                return res.send(err);
+            }
+            BlogPost.find({}, (err, blogposts) => {
+                if (err) {
+                    return res.send(err);
+                }
+                res.json(blogposts);
+            });
+        });
+    },
+    postNewBlogPost: (req, res) => {
+        // This creates a new blogpost using POSTed data (in req.body)
+        BlogPost.create({
+            title: req.body.title,
+            text: req.body.text,
+            date_added: Date.now(),
+            date_updated: Date.now()
+        }, (err, blogpost) => {
+            if (err) {
+                return res.send(err);
+            }
+            BlogPost.find({}, (err, blogposts) => {
+                if (err) {
+                    return res.send(err);
+                }
+                // Send list of all blogposts after new one has been created and saved
+                res.json(blogposts);
+            });
+        });
+    },
+    deleteBlogPost: (req, res) => {
+        BlogPost.remove({
+            _id: req.params.id
+        }, (err, blogpost) => {
+            if (err) {
+                return res.send(err);
+            }
+            BlogPost.find({}, (err, blogposts) => {
+                if (err) {
+                    return res.send(err);
+                }
+                res.json(blogposts);
+            });
+        });
+    },
+    deleteAllBlogPosts: (req, res) => {
+        BlogPost.remove({}, (err, blogpost) => {
+            if (err) {
+                return res.send(err);
+            }
+            BlogPost.find({}, (err, blogposts) => {
+                if (err) {
+                    return res.send(err);
+                }
+                res.json(blogposts);
+            });
+        });
+    }
 }
 
 export default mainController;

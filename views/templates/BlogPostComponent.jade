@@ -10,17 +10,22 @@
             th.text-center Todos
         tbody
           tr(*ngFor="var apost of blogposts")
-            td
+            td#blogrow
               input(type='checkbox' on-click='deleteBlogPost(apost._id)' bind-checked="false")
               | &nbsp;&nbsp;
-              h3 {{apost.title}}
+              a(href='/blogpostdetail/{{apost._id}}') {{apost.title}}
+              span.glyphicon.glyphicon-menu-down.show_more
+
   .row
     .col-sm-6.col-sm-offset-3
       form(on-ngSubmit='createBlogPost()')
         .form-group
-          input.form-control.input-lg.text-center(type='text' placeholder='What to do next?' bindon-ngModel='blogpostData.title' required)
+          input.form-control.input-lg.text-center(type='text' placeholder='Post Title...' bindon-ngModel='blogpostData.title' required)
           textarea.form-control.input-lg.text-center(rows='20' cols='50' placeholder='Diary Entry...' bindon-ngModel='blogpostData.text' required)
 
             .form-group.text-center
           br
-          button.btn.btn-success.btn-lg.text-center(type='Submit') Do Something
+          button.btn.btn-success.btn-lg.text-center(type='Submit') Submit Entry
+
+script.
+    $('#blogrow')

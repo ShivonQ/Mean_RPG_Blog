@@ -1,0 +1,11 @@
+.tr(*ngIf ="var post")
+    .row
+        .col-sm-6.col-sm-offset-3
+            form(on-ngSubmit='updateBlogPost()')
+                .form-group
+                    input.form-control.input-lg.text-center(type='text' placeholder='{{post.title}}' bindon-ngModel='blogpostData.title' required)
+                    textarea.form-control.input-lg.text-center(rows='20' cols='50' placeholder='{{post.text}}' bindon-ngModel='blogpostData.text' required)
+
+                        .form-group.text-center
+                    br
+                    button.btn.btn-success.btn-lg.text-center(type='Submit') Update Post

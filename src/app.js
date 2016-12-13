@@ -42,8 +42,8 @@ app.get('/', mainController.getIndex);
 app.get('/templates/:template', mainController.getTemplate);
 app.get('/blogposts', mainController.getAllBlogPosts);
 app.post('/blogposts', mainController.postNewBlogPost);
-//TODO: make route for details app.get('/blogpost/details/:id', mainController.updateBlogPost);
-app.delete('/blogposts', mainController.deleteAllBlogPosts);
+app.get('/blogpostdetail/:id', mainController.updateBlogPost);
+// app.delete('/blogposts', mainController.deleteAllBlogPosts);
 app.delete('/blogposts/:id', mainController.deleteBlogPost);
 
 
