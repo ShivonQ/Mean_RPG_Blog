@@ -42,32 +42,10 @@ app.get('/', mainController.getIndex);
 app.get('/templates/:template', mainController.getTemplate);
 app.get('/blogposts', mainController.getAllBlogPosts);
 app.post('/blogposts', mainController.postNewBlogPost);
+//TODO: make route for details app.get('/blogpost/details/:id', mainController.updateBlogPost);
 app.delete('/blogposts', mainController.deleteAllBlogPosts);
 app.delete('/blogposts/:id', mainController.deleteBlogPost);
 
-/**
- * Periodically clean database (every ten minutes, for Heroku demo)
- */
-setInterval(() => {
-  let req = http.request({
-    hostname: "localhost",
-    port: app.get('port'),
-    path: '/blogposts',
-    method: 'DELETE'
-  }, (res) => {
-    res.setEncoding('utf8');
-    res.on('data', function (chunk) {
-      console.log('Response body: ' + chunk);
-    });
-    res.on('end', function() {
-      console.log('Response end.')
-    });
-  });
-  req.on('error', function(e) {
-    console.log('Error with request: ' + e.message);
-  });
-  req.end();
-}, 1000 * 60 * 10);
 
 /**
  * Start app
