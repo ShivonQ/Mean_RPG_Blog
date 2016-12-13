@@ -15,6 +15,12 @@ class BlogPostDetailService {
                 return JSON.parse(res._body);
             });
     }
+    // getAllBlogPosts() {
+    //     return this.http.get('/blogposts')
+    //         .map((res) => {
+    //             return JSON.parse(res._body);
+    //         });
+    // }
 }
 
 BlogPostDetailService.parameters = [new Inject(Http)];

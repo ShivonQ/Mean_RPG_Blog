@@ -19,7 +19,7 @@ let mainController = {
         });
     },
     updateBlogPost: (req, res) => {
-        BlogPost.update({_id: req.params.id}, {
+        BlogPost.findByIdAndUpdate({id: req.params._id}, {
             $set: {
                 title: req.body.title,
                 text: req.body.text,
