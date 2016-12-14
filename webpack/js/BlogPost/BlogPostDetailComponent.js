@@ -8,20 +8,26 @@ import {BlogPostDetailService} from './BlogPostDetailService'
 class BlogPostDetailComponent {
     constructor(blogpostdetailService) {
         // So it isn't undefined
-        this.blogposts = [];
+        this.blogpost = [];
         this.blogpostData = {
             text: ''
         };
         this.blogpostdetailService = blogpostdetailService;
-        this.blogpostdetailService.getAllBlogPosts()
+        this.blogpostdetailService.getBlogPost(req.params._id)
             .subscribe((res) => {
-                this.blogposts = res;
+                this.blogpost = res;
             });
+    }
+    getBlogPost(){
+        this.blogpostdetailService.getBlogPost(this.blogpostData)
+            .subscribe((res) => {
+                this.blogpost=res;
+            })
     }
     updateBlogPost(id) {
         this.blogpostdetailService.updateBlogPost(this.blogpostData)
             .subscribe((res) => {
-                this.blogposts = res;
+                this.blogpost = res;
                 this.blogpostData.text = '';
                 this.blogpostData.title = '';
             });

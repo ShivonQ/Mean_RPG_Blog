@@ -27,7 +27,7 @@ mongoose.connection.on('error', function() {
  * Configure app
  */
 let app = express(); // Creates an Express app
-app.set('port', process.env.PORT || 3000); // Set port to 3000 or the provided PORT variable
+app.set('port', process.env.PORT || 3200); // Set port to 3000 or the provided PORT variable
 app.set('views', path.join(__dirname, '..', 'views')); // Set our views directory to be `/views` (in the app root, which is one level above)
 app.set('view engine', 'jade'); // Set our view engine to be Jade (so when we render these views, they are compiled with the Jade compiler)
 app.use(express.static(path.join(__dirname, '..', 'public'))); // Set the static files directory - /public will be / on the frontend
@@ -42,7 +42,8 @@ app.get('/', mainController.getIndex);
 app.get('/templates/:template', mainController.getTemplate);
 app.get('/blogposts', mainController.getAllBlogPosts);
 app.post('/blogposts', mainController.postNewBlogPost);
-app.get('/blogpostdetail/:id', mainController.updateBlogPost);
+app.post('/blogpostdetail/:id', mainController.updateBlogPost);
+app.get('/blogpostdetail/:id', mainController.getBlogPost)
 // app.delete('/blogposts', mainController.deleteAllBlogPosts);
 app.delete('/blogposts/:id', mainController.deleteBlogPost);
 

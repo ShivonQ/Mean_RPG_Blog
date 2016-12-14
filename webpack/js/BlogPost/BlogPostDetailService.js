@@ -8,6 +8,13 @@ import 'rxjs/add/operator/map'
 class BlogPostDetailService {
     constructor(http) {
         this.http = http;
+
+    }
+    getBlogPost(id) {
+        return this.http.get('/blogpostdetail/'+id)
+            .map((res) => {
+                return JSON.parse(res._body);
+            });
     }
     updateBlogPost(id){
         return this.http.get('/blogpostsdetail/'+id)
